@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+:root{
+    --black: #222;
+    --header: #045757;
+    --bg-menu: #04575780;
+    --bg-color: #044343;
+    --light: #E4E4E4;
+}
+*{
+    font-family: 'Raleway', sans-serif;
+}
+body{
+    background-color: whitesmoke;
+    margin: 0;
+}
+.header{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    height: 3rem;
+    /* margin-top: 1px; */
+    max-width: 100%;
+    gap: 20%;
+
+    background-color: var(--header);
+    color: var(--light);
+}
+.icon__btn{
+    cursor: pointer;
+}
+.header__title{
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+.header__mobile__nav.no__display{
+    left: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header__mobile__nav{
+    transition: all .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    
+    position: fixed;
+    top: 0;
+    /* right: 0; */
+    left: 0;
+    z-index: 2;
+
+    background-color: var(--bg-color);
+}
+.header__mobile__list{
+    margin-bottom: 20vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-items: center;
+    padding: 0;
+    gap: 2rem;
+}
+.header__mobile__list .header__list__item{
+    text-decoration: underline;
+}
+.header__mobile__list > .header__list__item:first-child{
+    font-size: 1.5rem;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header__bg-responsive.no__display{
+    display: none;
+}
+.header__bg-responsive{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-menu);
+}
+.header__icon-close{
+    border: 2px solid var(--light);
+    border-radius: 50%;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.main__container{
+    min-height: calc(100vh - 3rem);
 }
 
-.App-link {
-  color: #61dafb;
+/* NO RESPONSIVE */
+.header__list{
+    display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+/* *************************** */
+/* FOOTER   */
+.footer{
+    background-color: var(--bg-menu);
 }
