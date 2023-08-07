@@ -4,10 +4,11 @@ import NavItemsContainer from "./components/NavItemsContainer";
 import Footer from "./components/Footer";
 import ProductsItems from "./components/ProductsItems";
 
-import "./App.css";
+import "./css/normalize.css";
+import "./css/App.css";
 
 function App() {
-    const [idProducts, setIdProducts] = useState(null);
+    const [idProducts, setIdProducts] = useState(undefined);
 
     const onCategoryClick=(id)=>{
         // alert("hola mundo"+id);
@@ -26,23 +27,22 @@ function App() {
             </NavItemsContainer> */}
         </Header>
 
-        <section className="main__container">
-            <nav className="header__nav">
+        <main className="main">
+            <nav className="main__nav">
                 <NavItemsContainer 
-                className={"header__list"} 
+                className={"main__nav-list"} 
                 responsive={false} 
                 onCategoryClick={onCategoryClick}/>
             </nav>
 
-            <article>
-                <h1>Main Area</h1>
-                <section>
-                    <ProductsItems
-                    id = {idProducts}
-                    />
-                </section>
+            <article className="main__products">
+                <h2 className="main__products__title">Main Area</h2>
+                <ProductsItems
+                className={"main__products__container"}
+                id = {idProducts}
+                />
             </article>
-        </section>
+        </main>
 
         <Footer></Footer>
     </>

@@ -15,8 +15,8 @@ export const fetcher = async (url) =>{
 }
 
 export const getProducts = (id)=>{
-    let param =id.id?`products?catId=${id.id}`:"products";
-    console.log(`${BASE_URL}${param}`)
+    // console.log(id)
+    let param =id?`products?catId=${id}`:"products";
     return fetcher(param)
 }
 

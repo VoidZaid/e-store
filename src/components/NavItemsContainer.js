@@ -40,11 +40,13 @@ const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  
     
     const createListItem = (e, id) => {
         const valCategory = e.id? `category__${e.id}` : "";
-        return <li 
+        return (
+        <li
         className={`header__list__item item__${id}`} 
         key={id} 
         id={valCategory} 
-        onClick={()=>handleClick(e.id)} >{e.title}</li>;
+        onClick={()=>handleClick(e.id)} >{e.title}</li>
+        );
     };
 
 

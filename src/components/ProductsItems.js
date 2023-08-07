@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../services/useProducts';
+import ProductCard from '../components/ProductCard'
 
-const ProductsItems = (id) => {
+const ProductsItems = ({className, id}) => {
 
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState({errMessage: '', data: []});
@@ -9,9 +10,9 @@ const ProductsItems = (id) => {
     useEffect(()=>{
         const fetchData = async ()=>{
             const responseObject = await getProducts(id);
+            // console.log(responseObject)
             setProducts(responseObject);
         }
-        console.log(id);
         fetchData()
     },[id])
 
@@ -21,23 +22,28 @@ const ProductsItems = (id) => {
 
     const renderProducts = ()=>{
         // console.log(getListProducts())
-        if(loading) return "Aun esta cargando!!!!!!!!!!!"
-        console.log(products)
+        if(loading) return "Aun esta cargando!!!!!!!!!!!";
         return getListProducts()
     }
 
     const getListProducts = ()=>{
-        return products.data.map(e=>createProductItem(e))
-    }
-    const createProductItem = (e)=>{
-        return <div key={e.id} id={e.id}>{e.title}</div>
+        return products.data.map((e, id)=>(   
+            <ProductCard key={id}
+                title={e.title} 
+                img={e.image} 
+                specs={e.specs} 
+                features={e.features} 
+                price={e.price} 
+                stock={e.stock}
+            />
+        ))
     }
 
     return (
-        <div>
+        <section className={className}>
             {products.errMessage && <div>Error: {products.errMessage}</div>}
             {products.data && renderProducts()}
-        </div>
+        </section>
     )
 }
 
