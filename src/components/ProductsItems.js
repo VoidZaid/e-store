@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getProducts } from '../services/useProducts';
-import ProductCard from '../components/ProductCard'
+import { getProducts } from '../services/fetcher';
+import ProductCard from './ProductCard'
 
 const ProductsItems = ({className, id}) => {
 
@@ -29,6 +29,7 @@ const ProductsItems = ({className, id}) => {
     const getListProducts = ()=>{
         return products.data.map((e, id)=>(   
             <ProductCard key={id}
+                id={e.id}
                 title={e.title} 
                 img={e.image} 
                 specs={e.specs} 

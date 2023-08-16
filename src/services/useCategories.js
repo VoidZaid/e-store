@@ -10,8 +10,7 @@ const useCategories = (typeData="categories", responsive) => {
         fetch(`http://localhost:3001/${typeData}`)
         .then(response =>  response.json())
         .then(data =>{
-            if(title) data.unshift({title: title})
-            // console.log(data)
+            // if(title) data.unshift({title: title})
             setResults(data)//establecemos resultado fetch como estado
         })
         .finally(()=> setIsLoading(false))

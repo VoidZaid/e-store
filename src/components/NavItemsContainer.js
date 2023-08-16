@@ -1,26 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import useCategories from '../services/useCategories';
-
+// import useCategories from '../services/useCategories';
+import { getCategories } from '../services/fetcher';
 const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  children}) => {
-    debugger
-    const { isLoading, results } = useCategories('categories', responsive);
-
-    const [useResults, setUseResults] = useState([]);
-    const [loading, setLoading] = useState(isLoading);
-
-    useEffect(()=>{
-        setLoading(isLoading)
-    },[isLoading])
+    const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // debugger
-        // console.log("inprimido cuantas veces")
-        setUseResults([...results]);
-    }, [loading, setUseResults]);
+        const fetchCategories = async ()=>{
+            const responseObj = await getCategories();
+            debugger
+            setResults(responseObj)            
+        };
+        fetchCategories()
+    }, []);
+    
+    useEffect(()=>{
+        setLoading(false)
+    },[results])
 
     const renderResponsiveMenu = ()=>{
         if(loading) return "Aun esta cargando..................";
-        const arrNav = getNavItems(useResults);
+        const arrNav = getNavItems(results);
         return arrNav;
     }
 
@@ -32,12 +32,6 @@ const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  
         return arrNav;
     };
 
-
-    const handleClick = (id)=>{
-        onShowMenu();
-        onCategoryClick(id)
-    }
-    
     const createListItem = (e, id) => {
         const valCategory = e.id? `category__${e.id}` : "";
         return (
@@ -48,6 +42,11 @@ const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  
         onClick={()=>handleClick(e.id)} >{e.title}</li>
         );
     };
+
+    const handleClick = (id)=>{
+        onShowMenu();
+        onCategoryClick(id)
+    }
 
 
     return (

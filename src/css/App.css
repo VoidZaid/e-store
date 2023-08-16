@@ -116,26 +116,24 @@ body{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    margin: 2rem 0;
-    padding: .5rem .5rem;
+    margin: 1.5rem 0;
+    padding: 1rem .5rem 1.5rem;
     box-sizing: border-box;
     background-color: var(--bg-menu);
     border-radius: .5rem;
 }
 .main__product h3{
-    margin: .5rem 0 .5rem 0;
+    margin: 1rem 0;
     font-size: 1rem;
+    color: var(--header);
 }
 
 .main__product__title{
-    width: 100%;
+    font-size: 1.1rem;
 }
 .main__product figure{
     margin: 0;
     background-color: white;
-}
-.main__product__img-container{
-    width: 100%;
 }
 .main__product__img-container img{
     display: block;
@@ -162,7 +160,7 @@ body{
     transform: translateY(-2px);
     color: var(--header);
     font-size: 1rem;
-}
+} 
 /* *********************** */
 .main__product__finance{
     width: 35%;

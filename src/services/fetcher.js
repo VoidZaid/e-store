@@ -8,6 +8,7 @@ export const fetcher = async (url) =>{
         responseObject.errMessage = '';
         responseObject.data = responseData
         // return responseObject;
+        console.log(responseObject)
     } catch(err){
         responseObject.errMessage = err.message
     }
@@ -20,6 +21,11 @@ export const getProducts = (id)=>{
     return fetcher(param)
 }
 
-export const getCategories = ()=>{
-    return fetcher('categories')
+export const getCategories = async()=>{
+    const result = await fetcher('categories');
+    return result.data; 
+}
+
+export const getProductById = (id)=>{
+    return fetcher(`products/${id}`)
 }

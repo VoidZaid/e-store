@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import Header from "./components/Header";
 import NavItemsContainer from "./components/NavItemsContainer";
 import Footer from "./components/Footer";
-import ProductsItems from "./components/ProductsItems";
+import ProductsItems from "./components/productsItems";
 
 import "./css/normalize.css";
 import "./css/App.css";
@@ -11,9 +11,9 @@ function App() {
     const [idProducts, setIdProducts] = useState(undefined);
 
     const onCategoryClick=(id)=>{
-        // alert("hola mundo"+id);
         setIdProducts(id);
-        console.log(idProducts)
+        // alert("hola mundo"+id);
+        // console.log(idProducts)
     }
     
     return (

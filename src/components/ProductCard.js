@@ -1,10 +1,15 @@
 import React from 'react';
 import Icon from './Icon';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProductCard = ({id,title, img, specs, features, price, stock}) => {
+    const navigate = useNavigate();
+
     return (
         <article className='main__product' key={id}>
-            <h3 className='main__product__title'>{title}</h3>
+            <h3 className='main__product__title'>
+                <Link to={`products/${id}`}>{title}</Link>
+            </h3>
 
             <div className='main__product__img-container'>
                 <figure>
@@ -48,7 +53,7 @@ const ProductCard = ({id,title, img, specs, features, price, stock}) => {
                     <label>Free delivery</label>
                 </div>
                 <div className='main__product__action'>
-                    <button>View product <Icon icon={'search'}/></button>
+                    <button onClick={()=>{navigate(`products/${id}`)}}>View product <Icon icon={'search'}/></button>
                     <button>Add to basket <Icon icon={'shopping_cart'}/></button>
                 </div>
             </aside>
