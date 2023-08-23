@@ -1,20 +1,10 @@
-import React, {useState} from "react";
+import React from 'react';
 import Header from "./components/Header";
 import NavItemsContainer from "./components/NavItemsContainer";
 import Footer from "./components/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import "./css/normalize.css";
-import "./css/App.css";
-
-function App() {
-    const [idProducts, setIdProducts] = useState(undefined);
-
-    const onCategoryClick=(id)=>{
-        setIdProducts(id);
-        // console.log(idProducts)
-    }
-    
+const Layout = () => {
     return (
     <>
         <Header onCategoryClick={onCategoryClick}>
@@ -35,10 +25,9 @@ function App() {
                 </section>
             </article>
         </main>
-
         <Footer></Footer>
     </>
-    );
+    )
 }
 
-export default App;
+export default Layout

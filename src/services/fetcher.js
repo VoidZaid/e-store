@@ -15,10 +15,12 @@ export const fetcher = async (url) =>{
     return responseObject;
 }
 
-export const getProducts = (id)=>{
-    // console.log(id)
-    let param =id?`products?catId=${id}`:"products";
+export const getProductsByCategory = (id)=>{
+    let param =`products?catId=${id}`;
     return fetcher(param)
+}
+export const getProducts = ()=>{
+    return fetcher("products")
 }
 
 export const getCategories = async()=>{

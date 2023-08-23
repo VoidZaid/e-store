@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-// import useCategories from '../services/useCategories';
 import { getCategories } from '../services/fetcher';
+import { Link } from 'react-router-dom';
 const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  children}) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -39,7 +39,9 @@ const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  
         className={`header__list__item item__${id}`} 
         key={id} 
         id={valCategory} 
-        onClick={()=>handleClick(e.id)} >{e.title}</li>
+        onClick={()=>handleClick(e.id)} >
+            <Link to={`/categories/${e.id}`}>{e.title}</Link> 
+        </li>
         );
     };
 

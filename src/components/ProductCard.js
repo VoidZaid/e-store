@@ -13,7 +13,7 @@ const ProductCard = ({id,title, img, specs, features, price, stock}) => {
 
             <div className='main__product__img-container'>
                 <figure>
-                    <img className='main__product__img' src={`./assets/${img}`} alt={title} />
+                    <img className='main__product__img' src={`../assets/${img}`} alt={title} />
                 </figure>
             </div>
 

@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { getProducts } from '../services/fetcher';
-import ProductCard from './ProductCard'
+import { useParams } from 'react-router-dom';
+import { getProductsByCategory } from '../services/fetcher';
+import ProductCard from './ProductCard';
 
-const ProductsItems = () => {
-
+const Category = () => {
+    const {categoryId} = useParams();
+    
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState({errMessage: '', data: []});
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const responseObject = await getProducts();
-            setProducts(responseObject);
+            const categoryProducts = await getProductsByCategory(categoryId);
+            setProducts(categoryProducts);
         }
         fetchData()
-    },[])
+    },[categoryId])
 
     useEffect(()=>{
         setLoading(false);
     },[loading, setProducts])
 
     const renderProducts = ()=>{
-        // console.log(getListProducts())
-        if(loading) return "Aun esta cargando!!!!!!!!!!!";
+        if(loading) return "Cargando elementos...............";
         return getListProducts()
     }
-
     const getListProducts = ()=>{
         return products.data.map((e, id)=>(   
             <ProductCard key={id}
@@ -40,6 +40,7 @@ const ProductsItems = () => {
     }
 
     return (
+
         <>
             {products.errMessage && <div>Error: {products.errMessage}</div>}
             {products.data && renderProducts()}
@@ -47,4 +48,4 @@ const ProductsItems = () => {
     )
 }
 
-export default ProductsItems
+export default Category

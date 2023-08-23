@@ -4,7 +4,7 @@ const useCategories = (typeData="categories", responsive) => {
     const [isLoading, setIsLoading] = useState(true);
     const [results, setResults] = useState([]);
 
-    const title = responsive? "My E-Store":null;
+    // const title = responsive? "My E-Store":null;
 
     useEffect(()=>{
         fetch(`http://localhost:3001/${typeData}`)

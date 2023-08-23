@@ -16,12 +16,13 @@ const MenuResponsive = ({menuShow, onShowMenu, onCategoryClick, children}) => {
         <div className={`header__bg-responsive ${valMenuDisplay()}`} id="header__bg-responsive"></div>
         <nav className={`header__mobile__nav ${valMenuDisplay()}`}>
             <Icon icon='close' className='header__icon-close icon__btn' onMenuClick={onShowMenu}/>
+            <h1 className='header__mobile__title'>My E-store</h1>
             <NavItemsContainer 
                 className={"header__mobile__list"} 
                 responsive={true} 
                 onCategoryClick={onCategoryClick}
                 onShowMenu={onShowMenu}>
-                    <nav> 
+                    <nav>
                         {children}componente de redes sociales
                     </nav>
             </NavItemsContainer>
