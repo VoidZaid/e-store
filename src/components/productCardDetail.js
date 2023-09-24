@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
-import Header from './Header';
 import { getProductById } from '../services/fetcher';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Product = styled.article`
     display: flex;
@@ -91,6 +91,8 @@ const ProductDescription = styled.div`
 `;
 
 const ProductDetail = () => {
+    const navigate = useNavigate();
+
     const [product, setProduct] = useState({errMessage: '', data: {specs:{dimensions:'', capacity:''}, features:[]}})
     const {productId} = useParams();
 
@@ -112,7 +114,6 @@ const ProductDetail = () => {
 
     return (
         <>
-        <Header></Header>
         <Product>
             <ProductTitle>{product.data.title}</ProductTitle>
             <div>
@@ -157,7 +158,6 @@ const ProductDetail = () => {
                     <label>Free delivery</label>
                 </ProductFinanceStock>
                 <ProductAction>
-                    <ProductActionFirstButton>View product <Icon icon={'search'}/></ProductActionFirstButton>
                     <ProductActionLastButton>Add to basket <Icon icon={'shopping_cart'}/></ProductActionLastButton>
                 </ProductAction>
             </ProductFinance>

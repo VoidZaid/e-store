@@ -8,7 +8,7 @@ export const fetcher = async (url) =>{
         responseObject.errMessage = '';
         responseObject.data = responseData
         // return responseObject;
-        console.log(responseObject)
+        // console.log(responseObject)
     } catch(err){
         responseObject.errMessage = err.message
     }

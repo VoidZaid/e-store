@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { CartContext } from '../contexts/cartContext';
 import Icon from './Icon';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ProductCard = ({id,title, img, specs, features, price, stock}) => {
     const navigate = useNavigate();
+    const {addProduct} = useContext(CartContext);
 
     return (
         <article className='main__product' key={id}>
@@ -53,8 +55,8 @@ const ProductCard = ({id,title, img, specs, features, price, stock}) => {
                     <label>Free delivery</label>
                 </div>
                 <div className='main__product__action'>
-                    <button onClick={()=>{navigate(`products/${id}`)}}>View product <Icon icon={'search'}/></button>
-                    <button>Add to basket <Icon icon={'shopping_cart'}/></button>
+                    <button onClick={()=>{navigate(`/products/${id}`)}}>View product <Icon icon={'search'}/></button>
+                    <button onClick={()=>{addProduct({id, title, price})}}>Add to basket <Icon icon={'shopping_cart'}/></button>
                 </div>
             </aside>
         </article>

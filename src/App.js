@@ -1,42 +1,37 @@
-import React, {useState} from "react";
-import Header from "./components/Header";
-import NavItemsContainer from "./components/NavItemsContainer";
-import Footer from "./components/Footer";
-import { Outlet } from "react-router-dom";
+import React from "react";
+
+import ProductCardDetail from './components/productCardDetail';
+import Basket from './components/basket';
+import Checkout from './components/checkout';
+import Category from './components/category';
+import Layout from "./components/layout";
+import Home from "./components/home";
+import OrderConfirmation from "./components/orderConfirmation";
+
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
 
 import "./css/normalize.css";
 import "./css/App.css";
 
 function App() {
-    const [idProducts, setIdProducts] = useState(undefined);
-
-    const onCategoryClick=(id)=>{
-        setIdProducts(id);
-        // console.log(idProducts)
-    }
-    
     return (
     <>
-        <Header onCategoryClick={onCategoryClick}>
-        </Header>
-
-        <main className="main">
-            <nav className="main__nav">
-                <NavItemsContainer 
-                className={"main__nav-list"} 
-                responsive={false} 
-                onCategoryClick={onCategoryClick}/>
-            </nav>
-
-            <article className="main__products">
-                <h2 className="main__products__title">Main Area</h2>
-                <section className="main__products__container">
-                    <Outlet/>
-                </section>
-            </article>
-        </main>
-
-        <Footer></Footer>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Layout/>}>
+                    <Route index element={<Home/>}/>
+                    <Route path='basket' element={<Basket/>}/>
+                    <Route path='checkout' element={<Checkout/>}/>
+                    <Route path='products/:productId' element={<ProductCardDetail/>}/>
+                    <Route path='categories/:categoryId' element={<Category/>}/>
+                    <Route path='orderconfirmation' element={<OrderConfirmation/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     </>
     );
 }

@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { getCategories } from '../services/fetcher';
 import { Link } from 'react-router-dom';
-const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  children}) => {
+const NavItemsContainer = ({className, responsive, onShowMenu,  children}) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async ()=>{
             const responseObj = await getCategories();
-            debugger
             setResults(responseObj)            
         };
         fetchCategories()
@@ -39,16 +38,11 @@ const NavItemsContainer = ({className, responsive, onCategoryClick,onShowMenu,  
         className={`header__list__item item__${id}`} 
         key={id} 
         id={valCategory} 
-        onClick={()=>handleClick(e.id)} >
+        onClick={()=>onShowMenu()} >
             <Link to={`/categories/${e.id}`}>{e.title}</Link> 
         </li>
         );
     };
-
-    const handleClick = (id)=>{
-        onShowMenu();
-        onCategoryClick(id)
-    }
 
 
     return (
