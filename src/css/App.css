@@ -5,6 +5,9 @@
     --bg-color: #044343;
     --light: #E4E4E4;
 }
+h1{
+    cursor: pointer;
+}
 a{
     text-decoration: none;
     color: inherit;
@@ -313,7 +316,31 @@ body{
 
 
 
-
+.search__container{
+    height: 2rem;
+    display: flex;
+    border-radius: 2rem;
+    border: 2px solid var(--bg-color);
+    overflow: hidden;
+    /* align-items: stretch; */
+}
+.search__container:focus-within{
+    border: 2px solid var(--black);
+}
+.search__container input{
+    width: 250px;
+    border: none;
+    outline: none;
+    padding-left: .5rem;
+}
+.search__container label{
+    background-color: var(--bg-color);
+    /* background-color: var(--black); */
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /* *************************** */

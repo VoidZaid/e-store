@@ -5,6 +5,85 @@ import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
+
+const ProductDetail = () => {
+    const navigate = useNavigate();
+
+    const [product, setProduct] = useState({errMessage: '', data: {specs:{dimensions:'', capacity:''}, features:[]}})
+    const {productId} = useParams();
+
+    // const {id, carId, title, productCode, image, price, sku, description, specs,features, stock} = product.data;
+
+    useEffect(()=>{
+        const fetchData = async ()=>{
+            const productObject = await getProductById(productId);
+            // console.log(productObject)
+            setProduct(productObject);
+        } 
+        fetchData()
+    },[productId]);
+
+    const createMarkUp = ()=>{
+        return { __html: product.data?.description }
+    }
+
+
+    return (
+        <>
+        <Product>
+            <ProductTitle>{product.data.title}</ProductTitle>
+            <div>
+                <ProductFigure>
+                    <ProductImage src={`../assets/${product.data.image}`} alt={product.data.title} />
+                </ProductFigure>
+            </div>
+
+            <ProductSpec>
+                <div className='main__product__espec-dimension'>
+                    <ProductTitles>Dimensions</ProductTitles>
+                    <ProductSpecList>
+                        {product.data.specs.dimensions.split("-").map((e,id) =>{
+                            return <ProductSpecListItems key={id}><Icon className={'main__product__list-icon'} icon={"chevron_right"}/>{e}</ProductSpecListItems>
+                        })}
+                    </ProductSpecList>
+                </div>
+                {
+                product.data.specs.capacity&&
+                <div>
+                    <ProductTitles>Capacity</ProductTitles>
+                    <label>{product.data.specs.capacity}</label>
+                </div>
+                }
+
+                <div>
+                    {product.data.features&& <ProductTitles>Features</ProductTitles>}
+                    <ProductSpecList>
+                        {product.data.features?.map((e, id)=> {
+                            return <ProductSpecListItems key={id}><Icon className={'main__product__list-icon'} icon={"chevron_right"}/>{e}</ProductSpecListItems>
+                        })}
+                    </ProductSpecList>
+                </div>
+            </ProductSpec>
+
+            <ProductFinance>
+                <ProductFinancePrice>
+                    &pound; {product.data.price}
+                </ProductFinancePrice>
+                <ProductFinanceStock>
+                    <label>Stock level: {product.data.stock}</label><br />
+                    <label>Free delivery</label>
+                </ProductFinanceStock>
+                <ProductAction>
+                    <ProductActionLastButton>Add to basket <Icon icon={'shopping_cart'}/></ProductActionLastButton>
+                </ProductAction>
+            </ProductFinance>
+            <ProductDescription dangerouslySetInnerHTML={createMarkUp()}>
+            </ProductDescription>
+        </Product>
+        </>
+    )
+}
+
 const Product = styled.article`
     display: flex;
     width: 95%;
@@ -89,83 +168,5 @@ const ProductDescription = styled.div`
     font-size: .9rem;
 
 `;
-
-const ProductDetail = () => {
-    const navigate = useNavigate();
-
-    const [product, setProduct] = useState({errMessage: '', data: {specs:{dimensions:'', capacity:''}, features:[]}})
-    const {productId} = useParams();
-
-    // const {id, carId, title, productCode, image, price, sku, description, specs,features, stock} = product.data;
-
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            const productObject = await getProductById(productId);
-            // console.log(productObject)
-            setProduct(productObject);
-        } 
-        fetchData()
-    },[productId]);
-
-    const createMarkUp = ()=>{
-        return { __html: product.data?.description }
-    }
-
-
-    return (
-        <>
-        <Product>
-            <ProductTitle>{product.data.title}</ProductTitle>
-            <div>
-                <ProductFigure>
-                    <ProductImage src={`../assets/${product.data.image}`} alt={product.data.title} />
-                </ProductFigure>
-            </div>
-
-            <ProductSpec>
-                <div className='main__product__espec-dimension'>
-                    <ProductTitles>Dimensions</ProductTitles>
-                    <ProductSpecList>
-                        {product.data.specs.dimensions.split("-").map((e,id) =>{
-                            return <ProductSpecListItems key={id}><Icon className={'main__product__list-icon'} icon={"chevron_right"}/>{e}</ProductSpecListItems>
-                        })}
-                    </ProductSpecList>
-                </div>
-                {
-                product.data.specs.capacity&&
-                <div>
-                    <ProductTitles>Capacity</ProductTitles>
-                    <label>{product.data.specs.capacity}</label>
-                </div>
-                }
-
-                <div>
-                    {product.data.features&& <ProductTitles>Features</ProductTitles>}
-                    <ProductSpecList>
-                        {product.data.features?.map((e, id)=> {
-                            return <ProductSpecListItems key={id}><Icon className={'main__product__list-icon'} icon={"chevron_right"}/>{e}</ProductSpecListItems>
-                        })}
-                    </ProductSpecList>
-                </div>
-            </ProductSpec>
-
-            <ProductFinance>
-                <ProductFinancePrice>
-                    &pound; {product.data.price}
-                </ProductFinancePrice>
-                <ProductFinanceStock>
-                    <label>Stock level: {product.data.stock}</label><br />
-                    <label>Free delivery</label>
-                </ProductFinanceStock>
-                <ProductAction>
-                    <ProductActionLastButton>Add to basket <Icon icon={'shopping_cart'}/></ProductActionLastButton>
-                </ProductAction>
-            </ProductFinance>
-            <ProductDescription dangerouslySetInnerHTML={createMarkUp()}>
-            </ProductDescription>
-        </Product>
-        </>
-    )
-}
 
 export default ProductDetail

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { getCategories } from '../services/fetcher';
 import { Link } from 'react-router-dom';
-const NavItemsContainer = ({className, responsive, onShowMenu,  children}) => {
+const NavItemsContainer = ({className, onShowMenu,  children}) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
 

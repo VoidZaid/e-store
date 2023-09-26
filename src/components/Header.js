@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import Icon from './Icon';
+import Search from './search';
 import MenuResponsive from './MenuResponsive';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,16 +11,17 @@ const Header = ({children, onCategoryClick}) => {
 
     const navigate = useNavigate();
 
-    const showMenu = ()=>{
+    const displayMenu = ()=>{
         setMenuShow(menuShow === true? false: true);
     } 
 
     return (
         <header className="header">
             <BasketIcon onClick={()=>navigate('/basket')}/>
-            <h1 className="header__title"><Link to={'/'}>My E-store</Link></h1>
-            <Icon icon='menu' className='header__icon-menu icon__btn' id='header__icon' onMenuClick={showMenu}/>
-            <MenuResponsive menuShow={menuShow} onShowMenu={showMenu} onCategoryClick={onCategoryClick}>
+            <Search/>
+            {/* <h1 className="header__title"><Link to={'/'}>My E-store</Link></h1> */}
+            <Icon icon='menu' className='header__icon-menu icon__btn' id='header__icon' onMenuClick={displayMenu}/>
+            <MenuResponsive menuShow={menuShow} onDisplayMenu={displayMenu} onCategoryClick={onCategoryClick}>
                 {children}
             </MenuResponsive>
         </header>        

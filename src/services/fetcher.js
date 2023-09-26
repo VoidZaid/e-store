@@ -31,3 +31,7 @@ export const getCategories = async()=>{
 export const getProductById = (id)=>{
     return fetcher(`products/${id}`)
 }
+
+export const getProductByQuery = (query)=>{
+    return fetcher(`products?q=${query}`)
+}

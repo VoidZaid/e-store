@@ -7,6 +7,7 @@ import Category from './components/category';
 import Layout from "./components/layout";
 import Home from "./components/home";
 import OrderConfirmation from "./components/orderConfirmation";
+import SearchResult from "./components/searchResult";
 
 import {
     BrowserRouter,
@@ -29,6 +30,7 @@ function App() {
                     <Route path='products/:productId' element={<ProductCardDetail/>}/>
                     <Route path='categories/:categoryId' element={<Category/>}/>
                     <Route path='orderconfirmation' element={<OrderConfirmation/>}/>
+                    <Route path='search' element={<SearchResult/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
