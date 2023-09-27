@@ -1,14 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
     const navigate = useNavigate();
-    const confirmOrder = (ev)=>{
+    const [form, setForm]=useState({
+        name: '',
+        email:'',
+        shippingAddress1:'',
+        touched: {
+            name: false,
+            email: false,
+            shippingAddress1: false
+        }
+    })
+
+    // retorna true si algun campo esta vacio, sino retorna false
+    const errors = {
+        name: form.name.length ===0,
+        email:form.email.length ===0,
+        shippingAddress1:form.shippingAddress1.length ===0
+    }
+    const disabled = Object.keys(errors).some(x=>errors[x]);
+    
+    const handleChange = (e)=>{
+        // de TARGET vamos a obtener los campos NAME y VALUE
+        const {name, value} = e.target;
+        setForm((prevState)=>{
+            return{
+                ...prevState,
+                [name]: value//NAME contiene el nombre del campo que hace match con los campos del STATE, damos el valor como nuevo VALOR
+            }
+        })
+    }
+    
+    const handleBlur = (e)=>{
+        const {name} = e.target;
+        setForm((prevState)=>{
+            return{
+                ...prevState,
+                touched: {...form.touched, [name]: true}
+            }
+        })
+    }
+    
+    const showErrors = (field)=> errors[field]? form.touched[field]: false;
+    
+    // si todos lo campos tienen algun nos redirecciona 
+    const handleSubmit = (e)=>{
+        if (disabled) {
+            e.preventDefault()
+            return
+        }
         navigate('/orderconfirmation')
     }
     return (
-        <form >
+        <form onSubmit={handleSubmit}>
                 <CheckoutContainer>
                 {/* Row 1 */}
                 <CheckoutTitle>Shopping Checkout</CheckoutTitle>
@@ -23,17 +70,23 @@ const Checkout = () => {
 
                 {/* Row 6 */}
                 <CheckoutTable>
-                    <CheckoutFormLabel>Name</CheckoutFormLabel>
+                    <CheckoutFormLabel>Name *</CheckoutFormLabel>
                     <CheckoutInput
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                         type="text"
                         name="name"
                         placeholder="Enter name"
-                    />
-                    <CheckoutFormLabel>Email</CheckoutFormLabel>
+                        invalid={showErrors("name")}
+                        />
+                    <CheckoutFormLabel>Email *</CheckoutFormLabel>
                     <CheckoutInput
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        invalid={showErrors("email")}
                     />
                 </CheckoutTable>
 
@@ -53,21 +106,21 @@ const Checkout = () => {
                     <CheckoutFormLabel>Billing Address</CheckoutFormLabel>
 
                     <CheckoutAddress>
-                        <input
-                            type="text"
-                            name="billingAddress1"
-                        />
+                        <input type="text" name="billingAddress1"/>
                         <input type="text" name="billingAddress2" />
                         <input type="text" name="billingCity" />
                     </CheckoutAddress>
 
-                    <CheckoutFormLabel>Shipping Address</CheckoutFormLabel>
+                    <CheckoutFormLabel>Shipping Address *</CheckoutFormLabel>
 
                     <CheckoutAddress>
                         <CheckoutInput
+                            onChange={handleChange}
+                            onBlur={handleBlur}
                             type="text"
                             name="shippingAddress1"
                             placeholder="Enter first address line"
+                            invalid={showErrors("shippingAddress1")}
                         />
                         <input type="text" name="shippingAddress2" />
                         <input type="text" name="shippingCity" />
@@ -77,8 +130,8 @@ const Checkout = () => {
                 <CancelButton onClick={() => navigate("/basket")}>
                     Cancel
                 </CancelButton>
-
-                <CheckoutButton onClick={confirmOrder}>
+                {/* si no se cumple con los campos con VALOR desabilitamos el boton */}
+                <CheckoutButton disabled={disabled}>
                     Confirm Order
                 </CheckoutButton>
             </CheckoutContainer>
@@ -134,6 +187,8 @@ const CheckoutFormLabel = styled.label`
 const CheckoutInput = styled.input`
     border-width: 1px;
     border-style: solid;
+    border-color: black;
+    outline:none;
 
     ${(props) =>
         props.invalid &&
