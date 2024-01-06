@@ -17,7 +17,7 @@ const ProductCard = ({ id, title, img, specs, features, price, stock }) => {
 
             <div className={styles.product__img__container}>
                <figure>
-                  <img src={`../assets/${img}`} alt={title} />
+                  <img src={`../../assets/${img}`} alt={title} />
                </figure>
             </div>
             <div className={styles.product__espec__dimension}>
