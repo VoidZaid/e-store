@@ -1,8 +1,10 @@
 import React from 'react';
-import Header from "./Header";
-import NavItemsContainer from "./NavItemsContainer";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import NavItemsContainer from "../components/NavItemsContainer";
+import Footer from "../components/Footer";
 import { Outlet } from 'react-router-dom';
+
+import styles from "../css/ProductCard.module.scss";
 
 const Layout = () => {
     return (
@@ -18,7 +20,7 @@ const Layout = () => {
             </nav>
 
             <article className="main__products">
-                <section className="main__products__container">
+                <section className={styles.products__container}>
                     <Outlet/>
                 </section>
             </article>

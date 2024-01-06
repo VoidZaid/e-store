@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { TrashIcon, UpIcon, DownIcon } from './Icons';
+import { TrashIcon, UpIcon, DownIcon } from '../components/Icons';
 import { CartContext } from '../contexts/cartContext';
 
 import { Link, useNavigate } from 'react-router-dom';

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../services/fetcher";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/ProductCard";
 
 import styles from "../css/ProductCard.module.scss"
 
-const ProductsItems = () => {
+const Home = () => {
    const [loading, setLoading] = useState(true);
    const [products, setProducts] = useState({ errMessage: "", data: [] });
 
@@ -49,4 +49,5 @@ const ProductsItems = () => {
    );
 };
 
-export default ProductsItems;
+export default Home;
+

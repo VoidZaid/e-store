@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProductByQuery } from '../services/fetcher';
 import { useSearchParams } from 'react-router-dom';
-import ProductCard from './ProductCard';
+import ProductCard from '../components/ProductCard';
 
 const SearchResult = () => {
     const [products, setProducts] = useState({
@@ -42,10 +42,10 @@ const SearchResult = () => {
         }
     };
     return (
-        <div>
+        <>
             {products.errMessage && <div>Error: {products.errMessage}</div>}
             {renderProducts()}
-        </div>
+        </>
     )
 }
 

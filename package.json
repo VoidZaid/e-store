@@ -1,5 +1,6 @@
 {
   "name": "e-store",
+  "homepage": "https://voidzaid.github.io/e-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,9 +10,11 @@
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
+    "react-css-modules": "^4.7.11",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "sass": "^1.69.7",
     "sort-by": "^1.2.0",
     "styled-components": "^6.0.7",
     "web-vitals": "^2.1.4"

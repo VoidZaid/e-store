@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Icon from './Icon';
+import Icon from '../components/Icon';
 import { getProductById } from '../services/fetcher';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';

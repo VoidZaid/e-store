@@ -1,0 +1,131 @@
+
+.products__container{
+   max-width: 1024px;
+   margin: 1rem auto;
+}
+.product{
+   display: flex;
+   width: 100%;
+   flex-wrap: wrap;
+   margin: 1.5rem 0;
+   padding: 1rem .5rem 1.5rem;
+   box-sizing: border-box;
+   background-color: var(--bg-menu);
+   border-radius: .5rem;
+}
+.product h3{
+   margin: 0 0 .5rem 0;
+   font-size: 1rem;
+   color: var(--header);
+}
+
+.product__title{
+   font-size: 1.1rem;
+   margin: 0;
+}
+.product__img__container figure{
+   margin: .5rem;
+   background-color: white;
+}
+.product__img__container img{
+   display: block;
+   width: 95%;
+   margin: 0 auto;
+}
+.product__espec{
+   width: 65%;
+}
+.product__espec ul{
+   margin: 0;
+   padding: 0;
+}
+.product__espec li{
+   list-style: none;
+   position: relative;
+   padding-left: .5rem;
+   font-size: .7rem;
+}
+.product__list__icon{
+   position: absolute;
+   left: -.3rem;
+   top: 0;
+   transform: translateY(-2px);
+   color: var(--header);
+   font-size: 1rem;
+} 
+/* *********************** */
+.product__finance{
+   width: 35%;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+}
+.product__finance__price{
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--header);
+}
+.product__finance__stock{
+   font-size: .9rem;
+   line-height: 1.5rem;
+   font-weight: 700;
+}
+.product__action{
+   display: flex;
+   flex-direction: column;
+   gap: .3rem;
+   margin-top: auto;
+}
+.product__action button{
+   font-weight: 700;
+   border: 0px solid;
+   border-radius: .3rem;
+   color: var(--light);
+}
+.product__action button:first-child{
+   background-color: var(--header);
+   padding: .5rem 0 0 0;
+}
+.product__action button:last-child{
+   background-color: var(--bg-menu);
+   padding: .5rem 0 0 0;
+}
+
+@media (min-width: 480px){
+   .product__espec{
+      width: 75%;
+   }
+   .product__finance{
+      width: 25%;
+   }
+}
+@media (min-width: 640px){
+   .products__container{
+      display: flex ;
+      flex-wrap: wrap;
+      justify-content: space-between;
+   }
+   .product{
+      width: 48%;
+   }
+   .product__espec{
+      width: 65%;
+   }
+   .product__finance{
+      width: 35%;
+   }
+}
+@media (min-width: 768px){
+
+}
+@media (min-width: 1024px){
+   .product{
+      width: 32%;
+   }
+   .product__espec{
+      width: 65%;
+   }
+   .product__finance{
+      width: 35%;
+   }
+}
