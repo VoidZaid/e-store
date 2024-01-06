@@ -8,6 +8,7 @@ const ProductCard = ({ id, title, img, specs, features, price, stock }) => {
    const navigate = useNavigate();
    const { addProduct } = useContext(CartContext);
 
+
    return (
       <article className={styles.product} key={id}>
          <aside className={styles.product__espec}>
@@ -17,7 +18,8 @@ const ProductCard = ({ id, title, img, specs, features, price, stock }) => {
 
             <div className={styles.product__img__container}>
                <figure>
-                  <img src={`../../assets/${img}`} alt={title} />
+                  {/* TODO: process.env nos envia a la raiz, o ruta base, de alli buscamos la imagen  */}
+                  <img src={`${process.env.PUBLIC_URL}/assets/${img}`} alt={title} />
                </figure>
             </div>
             <div className={styles.product__espec__dimension}>
