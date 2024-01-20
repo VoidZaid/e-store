@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3002/";
+const BASE_URL = "https://e-store-mock.onrender.com/";
 export const fetcher = async (url) =>{
     let responseObject = {errMessage: '', data: []}
     try{
